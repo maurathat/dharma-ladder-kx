@@ -62,27 +62,27 @@
     {
       "name": "dharma_ladder_dl_01",
       "what": "DL-01's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
-      "where": "crates/conformance/tests/dharma_ladder.rs"
+      "where": "crates/conformance/tests/contract.rs"
     },
     {
       "name": "dharma_ladder_dl_02",
       "what": "DL-02's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
-      "where": "crates/conformance/tests/dharma_ladder.rs"
+      "where": "crates/conformance/tests/contract.rs"
     },
     {
       "name": "dharma_ladder_dl_03",
       "what": "DL-03's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
-      "where": "crates/conformance/tests/dharma_ladder.rs"
+      "where": "crates/conformance/tests/contract.rs"
     },
     {
       "name": "dharma_ladder_dl_04",
       "what": "DL-04's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
-      "where": "crates/conformance/tests/dharma_ladder.rs"
+      "where": "crates/conformance/tests/contract.rs"
     },
     {
       "name": "dharma_ladder_dl_05",
       "what": "DL-05's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
-      "where": "crates/conformance/tests/dharma_ladder.rs"
+      "where": "crates/conformance/tests/contract.rs"
     }
   ],
   "trusted": [
