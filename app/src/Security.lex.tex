@@ -1,0 +1,1011 @@
+\begin{lexlean}{Security}
+\useglossary{lexlean.std.bool@1.2.0}
+\useglossary{lexlean.std.nat@1.2.0}
+\useglossary{prism.arch@1.0.0}
+\useglossary{prism.sec@1.0.0}
+\importmodule{Foundation.Sec}
+\importmodule{Production.ThreatModel}
+\importmodule{Architecture}
+\title{security threat}
+\begin{semanticmodule}
+definition{
+  name: assetAnswer,
+  parameters: [],
+  result: Foundation.Sec::Asset,
+  body: (record Foundation.Sec::Asset {index := 0, componentIndex := 1})
+}
+
+definition{
+  name: assetModelSource,
+  parameters: [],
+  result: Foundation.Sec::Asset,
+  body: (record Foundation.Sec::Asset {index := 1, componentIndex := 5})
+}
+
+definition{
+  name: assetPublishedHolo,
+  parameters: [],
+  result: Foundation.Sec::Asset,
+  body: (record Foundation.Sec::Asset {index := 2, componentIndex := 2})
+}
+
+definition{
+  name: assetRequestBytes,
+  parameters: [],
+  result: Foundation.Sec::Asset,
+  body: (record Foundation.Sec::Asset {index := 3, componentIndex := 1})
+}
+
+definition{
+  name: threatAlteredBuild,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 0})
+}
+
+definition{
+  name: threatAlteredPage,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 1})
+}
+
+definition{
+  name: threatAnswerThatBreaksINV001,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 2})
+}
+
+definition{
+  name: threatAnswerThatBreaksINV002,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 3})
+}
+
+definition{
+  name: threatAnswerThatBreaksINV003,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 4})
+}
+
+definition{
+  name: threatAnswerThatBreaksINV004,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 5})
+}
+
+definition{
+  name: threatAnswerThatBreaksINV005,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 6})
+}
+
+definition{
+  name: threatDeniedBuild,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 7})
+}
+
+definition{
+  name: threatDeniedPage,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 8})
+}
+
+definition{
+  name: threatGrantedCapability,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 9})
+}
+
+definition{
+  name: threatHoloAlteredFromDharmaNandaLadderPageToGitHubPages,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 10})
+}
+
+definition{
+  name: threatHoloAlteredFromGitHubPagesToBrowser,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 11})
+}
+
+definition{
+  name: threatHoloAlteredFromPrismBuildToDharmaNandaLadderPage,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 12})
+}
+
+definition{
+  name: threatHoloReadFromDharmaNandaLadderPageToGitHubPages,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 13})
+}
+
+definition{
+  name: threatHoloReadFromGitHubPagesToBrowser,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 14})
+}
+
+definition{
+  name: threatHoloReadFromPrismBuildToDharmaNandaLadderPage,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 15})
+}
+
+definition{
+  name: threatImpersonatedBuild,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 16})
+}
+
+definition{
+  name: threatMalformedRequest,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 17})
+}
+
+definition{
+  name: threatOversizedRequest,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 18})
+}
+
+definition{
+  name: threatPageRead,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 19})
+}
+
+definition{
+  name: threatSubstitutedHolo,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 20})
+}
+
+definition{
+  name: threatSubstitutedHost,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 21})
+}
+
+definition{
+  name: threatTamperedModel,
+  parameters: [],
+  result: Foundation.Sec::Threat,
+  body: (record Foundation.Sec::Threat {index := 22})
+}
+
+definition{
+  name: riskAlteredBuild,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 0, assetIndex := 1, threatIndex := 0, likelihood := (ctor Foundation.Sec::Likelihood.low), impact := (ctor Foundation.Sec::Impact.critical)})
+}
+
+definition{
+  name: riskAlteredPage,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 1, assetIndex := 2, threatIndex := 1, likelihood := (ctor Foundation.Sec::Likelihood.low), impact := (ctor Foundation.Sec::Impact.critical)})
+}
+
+definition{
+  name: riskAnswerThatBreaksINV001,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 2, assetIndex := 0, threatIndex := 2, likelihood := (ctor Foundation.Sec::Likelihood.medium), impact := (ctor Foundation.Sec::Impact.critical)})
+}
+
+definition{
+  name: riskAnswerThatBreaksINV002,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 3, assetIndex := 0, threatIndex := 3, likelihood := (ctor Foundation.Sec::Likelihood.medium), impact := (ctor Foundation.Sec::Impact.critical)})
+}
+
+definition{
+  name: riskAnswerThatBreaksINV003,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 4, assetIndex := 0, threatIndex := 4, likelihood := (ctor Foundation.Sec::Likelihood.medium), impact := (ctor Foundation.Sec::Impact.critical)})
+}
+
+definition{
+  name: riskAnswerThatBreaksINV004,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 5, assetIndex := 0, threatIndex := 5, likelihood := (ctor Foundation.Sec::Likelihood.medium), impact := (ctor Foundation.Sec::Impact.critical)})
+}
+
+definition{
+  name: riskAnswerThatBreaksINV005,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 6, assetIndex := 0, threatIndex := 6, likelihood := (ctor Foundation.Sec::Likelihood.medium), impact := (ctor Foundation.Sec::Impact.critical)})
+}
+
+definition{
+  name: riskDeniedBuild,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 7, assetIndex := 2, threatIndex := 7, likelihood := (ctor Foundation.Sec::Likelihood.low), impact := (ctor Foundation.Sec::Impact.major)})
+}
+
+definition{
+  name: riskDeniedPage,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 8, assetIndex := 2, threatIndex := 8, likelihood := (ctor Foundation.Sec::Likelihood.low), impact := (ctor Foundation.Sec::Impact.major)})
+}
+
+definition{
+  name: riskGrantedCapability,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 9, assetIndex := 0, threatIndex := 9, likelihood := (ctor Foundation.Sec::Likelihood.low), impact := (ctor Foundation.Sec::Impact.major)})
+}
+
+definition{
+  name: riskHoloAlteredFromDharmaNandaLadderPageToGitHubPages,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 10, assetIndex := 2, threatIndex := 10, likelihood := (ctor Foundation.Sec::Likelihood.low), impact := (ctor Foundation.Sec::Impact.critical)})
+}
+
+definition{
+  name: riskHoloAlteredFromGitHubPagesToBrowser,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 11, assetIndex := 2, threatIndex := 11, likelihood := (ctor Foundation.Sec::Likelihood.low), impact := (ctor Foundation.Sec::Impact.critical)})
+}
+
+definition{
+  name: riskHoloAlteredFromPrismBuildToDharmaNandaLadderPage,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 12, assetIndex := 2, threatIndex := 12, likelihood := (ctor Foundation.Sec::Likelihood.low), impact := (ctor Foundation.Sec::Impact.critical)})
+}
+
+definition{
+  name: riskHoloReadFromDharmaNandaLadderPageToGitHubPages,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 13, assetIndex := 2, threatIndex := 13, likelihood := (ctor Foundation.Sec::Likelihood.high), impact := (ctor Foundation.Sec::Impact.minor)})
+}
+
+definition{
+  name: riskHoloReadFromGitHubPagesToBrowser,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 14, assetIndex := 2, threatIndex := 14, likelihood := (ctor Foundation.Sec::Likelihood.high), impact := (ctor Foundation.Sec::Impact.minor)})
+}
+
+definition{
+  name: riskHoloReadFromPrismBuildToDharmaNandaLadderPage,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 15, assetIndex := 2, threatIndex := 15, likelihood := (ctor Foundation.Sec::Likelihood.high), impact := (ctor Foundation.Sec::Impact.minor)})
+}
+
+definition{
+  name: riskImpersonatedBuild,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 16, assetIndex := 2, threatIndex := 16, likelihood := (ctor Foundation.Sec::Likelihood.low), impact := (ctor Foundation.Sec::Impact.critical)})
+}
+
+definition{
+  name: riskMalformedRequest,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 17, assetIndex := 3, threatIndex := 17, likelihood := (ctor Foundation.Sec::Likelihood.high), impact := (ctor Foundation.Sec::Impact.major)})
+}
+
+definition{
+  name: riskOversizedRequest,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 18, assetIndex := 3, threatIndex := 18, likelihood := (ctor Foundation.Sec::Likelihood.medium), impact := (ctor Foundation.Sec::Impact.minor)})
+}
+
+definition{
+  name: riskPageRead,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 19, assetIndex := 2, threatIndex := 19, likelihood := (ctor Foundation.Sec::Likelihood.high), impact := (ctor Foundation.Sec::Impact.minor)})
+}
+
+definition{
+  name: riskSubstitutedHolo,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 20, assetIndex := 2, threatIndex := 20, likelihood := (ctor Foundation.Sec::Likelihood.low), impact := (ctor Foundation.Sec::Impact.critical)})
+}
+
+definition{
+  name: riskSubstitutedHost,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 21, assetIndex := 2, threatIndex := 21, likelihood := (ctor Foundation.Sec::Likelihood.low), impact := (ctor Foundation.Sec::Impact.critical)})
+}
+
+definition{
+  name: riskTamperedModel,
+  parameters: [],
+  result: Foundation.Sec::Risk,
+  body: (record Foundation.Sec::Risk {index := 22, assetIndex := 1, threatIndex := 22, likelihood := (ctor Foundation.Sec::Likelihood.low), impact := (ctor Foundation.Sec::Impact.major)})
+}
+
+definition{
+  name: controlBoundedRequest,
+  parameters: [],
+  result: Foundation.Sec::ApplicationSecurityControl,
+  body: (record Foundation.Sec::ApplicationSecurityControl {index := 0, riskIndex := 18})
+}
+
+definition{
+  name: controlFingerprintAndProvenance,
+  parameters: [],
+  result: Foundation.Sec::ApplicationSecurityControl,
+  body: (record Foundation.Sec::ApplicationSecurityControl {index := 1, riskIndex := 20})
+}
+
+definition{
+  name: controlNoCapabilityGranted,
+  parameters: [],
+  result: Foundation.Sec::ApplicationSecurityControl,
+  body: (record Foundation.Sec::ApplicationSecurityControl {index := 2, riskIndex := 9})
+}
+
+definition{
+  name: controlProofOfINV001,
+  parameters: [],
+  result: Foundation.Sec::ApplicationSecurityControl,
+  body: (record Foundation.Sec::ApplicationSecurityControl {index := 3, riskIndex := 2})
+}
+
+definition{
+  name: controlProofOfINV002,
+  parameters: [],
+  result: Foundation.Sec::ApplicationSecurityControl,
+  body: (record Foundation.Sec::ApplicationSecurityControl {index := 4, riskIndex := 3})
+}
+
+definition{
+  name: controlProofOfINV003,
+  parameters: [],
+  result: Foundation.Sec::ApplicationSecurityControl,
+  body: (record Foundation.Sec::ApplicationSecurityControl {index := 5, riskIndex := 4})
+}
+
+definition{
+  name: controlProofOfINV004,
+  parameters: [],
+  result: Foundation.Sec::ApplicationSecurityControl,
+  body: (record Foundation.Sec::ApplicationSecurityControl {index := 6, riskIndex := 5})
+}
+
+definition{
+  name: controlProofOfINV005,
+  parameters: [],
+  result: Foundation.Sec::ApplicationSecurityControl,
+  body: (record Foundation.Sec::ApplicationSecurityControl {index := 7, riskIndex := 6})
+}
+
+definition{
+  name: controlRegeneratedFromThePrompt,
+  parameters: [],
+  result: Foundation.Sec::ApplicationSecurityControl,
+  body: (record Foundation.Sec::ApplicationSecurityControl {index := 8, riskIndex := 22})
+}
+
+definition{
+  name: controlStrictDecoder,
+  parameters: [],
+  result: Foundation.Sec::ApplicationSecurityControl,
+  body: (record Foundation.Sec::ApplicationSecurityControl {index := 9, riskIndex := 17})
+}
+
+definition{
+  name: controlSet,
+  parameters: [],
+  result: Production.ThreatModel::ControlSet,
+  body: (record Production.ThreatModel::ControlSet {title := "Dharma Nanda ladder security controls", text := "Dharma Nanda ladder answers one request with one answer in a Core-Wasm guest granted no capability. Decide whether a seller or relay is trading or suspended after one event, from its strikes before the event, under the town's starting rule that 3 strikes suspend.", version := "0.1.0", lastModified := "2026-11-20T01:30:00Z"})
+}
+
+definition{
+  name: modeledAssetAnswer,
+  parameters: [],
+  result: Production.ThreatModel::ModeledAsset,
+  body: (record Production.ThreatModel::ModeledAsset {asset := "Security::assetAnswer", name := "Answer", text := "The answer the guest returns: one of trading, suspended, or invalid."})
+}
+
+definition{
+  name: modeledAssetModelSource,
+  parameters: [],
+  result: Production.ThreatModel::ModeledAsset,
+  body: (record Production.ThreatModel::ModeledAsset {asset := "Security::assetModelSource", name := "Model source", text := "The prompt, the spec and the LexLean model in the repository, from which the holo is built."})
+}
+
+definition{
+  name: modeledAssetPublishedHolo,
+  parameters: [],
+  result: Production.ThreatModel::ModeledAsset,
+  body: (record Production.ThreatModel::ModeledAsset {asset := "Security::assetPublishedHolo", name := "Published holo", text := "The holo and page the Pages workflow publishes, with its fingerprint and signed provenance."})
+}
+
+definition{
+  name: modeledAssetRequestBytes,
+  parameters: [],
+  result: Production.ThreatModel::ModeledAsset,
+  body: (record Production.ThreatModel::ModeledAsset {asset := "Security::assetRequestBytes", name := "Request bytes", text := "The bytes a caller sends, at most 64 of them."})
+}
+
+definition{
+  name: modeledThreatAlteredBuild,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatAlteredBuild", name := "Altered build", text := "Prism build runs other code than the SDK image the lock pins, or skips a check.", category := (ctor Production.ThreatModel::Stride.tampering)})
+}
+
+definition{
+  name: modeledThreatAlteredPage,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatAlteredPage", name := "Altered page", text := "Dharma Nanda ladder page is changed after the build published it.", category := (ctor Production.ThreatModel::Stride.tampering)})
+}
+
+definition{
+  name: modeledThreatAnswerThatBreaksINV001,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatAnswerThatBreaksINV001", name := "Answer that breaks INV-001", text := "The guest answers suspended although event is bad and strikes is at most 1, which matters because a first or second plain mistake never suspends.", category := (ctor Production.ThreatModel::Stride.repudiation)})
+}
+
+definition{
+  name: modeledThreatAnswerThatBreaksINV002,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatAnswerThatBreaksINV002", name := "Answer that breaks INV-002", text := "The guest answers suspended although event is injection and strikes equals 0, which matters because one injection from a clean record leaves the seller trading.", category := (ctor Production.ThreatModel::Stride.repudiation)})
+}
+
+definition{
+  name: modeledThreatAnswerThatBreaksINV003,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatAnswerThatBreaksINV003", name := "Answer that breaks INV-003", text := "The guest answers trading although event is good and strikes is at least 3, which matters because good work does not lift a suspension; only the council's pardon lowers strikes.", category := (ctor Production.ThreatModel::Stride.repudiation)})
+}
+
+definition{
+  name: modeledThreatAnswerThatBreaksINV004,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatAnswerThatBreaksINV004", name := "Answer that breaks INV-004", text := "The guest answers suspended although event is good and strikes is at most 2, which matters because good work never suspends.", category := (ctor Production.ThreatModel::Stride.repudiation)})
+}
+
+definition{
+  name: modeledThreatAnswerThatBreaksINV005,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatAnswerThatBreaksINV005", name := "Answer that breaks INV-005", text := "The guest answers suspended although event is pardonbad and strikes is at most 3, which matters because pardoning the delivery that brought a seller to exactly 3 strikes lifts the suspension.", category := (ctor Production.ThreatModel::Stride.repudiation)})
+}
+
+definition{
+  name: modeledThreatDeniedBuild,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatDeniedBuild", name := "Denied build", text := "Nobody can show which run of Prism build produced a published holo.", category := (ctor Production.ThreatModel::Stride.repudiation)})
+}
+
+definition{
+  name: modeledThreatDeniedPage,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatDeniedPage", name := "Denied page", text := "Nobody can show which build published Dharma Nanda ladder page.", category := (ctor Production.ThreatModel::Stride.repudiation)})
+}
+
+definition{
+  name: modeledThreatGrantedCapability,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatGrantedCapability", name := "Granted capability", text := "The guest reads, stores or sends data beyond the request it answers.", category := (ctor Production.ThreatModel::Stride.informationDisclosure)})
+}
+
+definition{
+  name: modeledThreatHoloAlteredFromDharmaNandaLadderPageToGitHubPages,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatHoloAlteredFromDharmaNandaLadderPageToGitHubPages", name := "Holo altered from Dharma Nanda ladder page to GitHub Pages", text := "The holo or its page is changed on the flow from Dharma Nanda ladder page to GitHub Pages.", category := (ctor Production.ThreatModel::Stride.tampering)})
+}
+
+definition{
+  name: modeledThreatHoloAlteredFromGitHubPagesToBrowser,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatHoloAlteredFromGitHubPagesToBrowser", name := "Holo altered from GitHub Pages to Browser", text := "The holo or its page is changed on the flow from GitHub Pages to Browser.", category := (ctor Production.ThreatModel::Stride.tampering)})
+}
+
+definition{
+  name: modeledThreatHoloAlteredFromPrismBuildToDharmaNandaLadderPage,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatHoloAlteredFromPrismBuildToDharmaNandaLadderPage", name := "Holo altered from Prism build to Dharma Nanda ladder page", text := "The holo or its page is changed on the flow from Prism build to Dharma Nanda ladder page.", category := (ctor Production.ThreatModel::Stride.tampering)})
+}
+
+definition{
+  name: modeledThreatHoloReadFromDharmaNandaLadderPageToGitHubPages,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatHoloReadFromDharmaNandaLadderPageToGitHubPages", name := "Holo read from Dharma Nanda ladder page to GitHub Pages", text := "Someone reads the holo or its page on the flow from Dharma Nanda ladder page to GitHub Pages.", category := (ctor Production.ThreatModel::Stride.informationDisclosure)})
+}
+
+definition{
+  name: modeledThreatHoloReadFromGitHubPagesToBrowser,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatHoloReadFromGitHubPagesToBrowser", name := "Holo read from GitHub Pages to Browser", text := "Someone reads the holo or its page on the flow from GitHub Pages to Browser.", category := (ctor Production.ThreatModel::Stride.informationDisclosure)})
+}
+
+definition{
+  name: modeledThreatHoloReadFromPrismBuildToDharmaNandaLadderPage,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatHoloReadFromPrismBuildToDharmaNandaLadderPage", name := "Holo read from Prism build to Dharma Nanda ladder page", text := "Someone reads the holo or its page on the flow from Prism build to Dharma Nanda ladder page.", category := (ctor Production.ThreatModel::Stride.informationDisclosure)})
+}
+
+definition{
+  name: modeledThreatImpersonatedBuild,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatImpersonatedBuild", name := "Impersonated build", text := "Something other than Prism build in the repository workflow claims to have built the holo.", category := (ctor Production.ThreatModel::Stride.spoofing)})
+}
+
+definition{
+  name: modeledThreatMalformedRequest,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatMalformedRequest", name := "Malformed request", text := "A request with a missing, extra, unknown or badly written field is answered as if it were well formed.", category := (ctor Production.ThreatModel::Stride.tampering)})
+}
+
+definition{
+  name: modeledThreatOversizedRequest,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatOversizedRequest", name := "Oversized request", text := "A request longer than 64 bytes makes the guest parse or allocate without bound.", category := (ctor Production.ThreatModel::Stride.denialOfService)})
+}
+
+definition{
+  name: modeledThreatPageRead,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatPageRead", name := "Page read", text := "Someone reads Dharma Nanda ladder page.", category := (ctor Production.ThreatModel::Stride.informationDisclosure)})
+}
+
+definition{
+  name: modeledThreatSubstitutedHolo,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatSubstitutedHolo", name := "Substituted holo", text := "A holo other than the one the build verified is served under the app address.", category := (ctor Production.ThreatModel::Stride.spoofing)})
+}
+
+definition{
+  name: modeledThreatSubstitutedHost,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatSubstitutedHost", name := "Substituted host", text := "Something other than the repository Pages workflow serves pages under its address.", category := (ctor Production.ThreatModel::Stride.spoofing)})
+}
+
+definition{
+  name: modeledThreatTamperedModel,
+  parameters: [],
+  result: Production.ThreatModel::ModeledThreat,
+  body: (record Production.ThreatModel::ModeledThreat {threat := "Security::threatTamperedModel", name := "Tampered model", text := "The model the holo is built from differs from the reviewed prompt and spec.", category := (ctor Production.ThreatModel::Stride.tampering)})
+}
+
+definition{
+  name: modeledControlBoundedRequest,
+  parameters: [],
+  result: Production.ThreatModel::ModeledControl,
+  body: (record Production.ThreatModel::ModeledControl {control := "Security::controlBoundedRequest", name := "Bounded request", text := "dispatch answers invalid for a request over 64 bytes before reading a field, and the guest allocates at most 128.", evidence := (cons (record Production.ThreatModel::Evidence {kind := (ctor Production.ThreatModel::EvidenceKind.gate), reference := "acceptance vectors at the request bound, one byte over it, and at the guest allocation bound, replayed by prismpm verify"}) (nil Production.ThreatModel::Evidence))})
+}
+
+definition{
+  name: modeledControlFingerprintAndProvenance,
+  parameters: [],
+  result: Production.ThreatModel::ModeledControl,
+  body: (record Production.ThreatModel::ModeledControl {control := "Security::controlFingerprintAndProvenance", name := "Fingerprint and provenance", text := "The page verifies the holo digests before it runs, and the build signs its provenance as the repository workflow.", evidence := (cons (record Production.ThreatModel::Evidence {kind := (ctor Production.ThreatModel::EvidenceKind.gate), reference := "actions/attest-build-provenance in the pages workflow"}) (cons (record Production.ThreatModel::Evidence {kind := (ctor Production.ThreatModel::EvidenceKind.gate), reference := "prism-code check of the holo identities in the page"}) (nil Production.ThreatModel::Evidence)))})
+}
+
+definition{
+  name: modeledControlNoCapabilityGranted,
+  parameters: [],
+  result: Production.ThreatModel::ModeledControl,
+  body: (record Production.ThreatModel::ModeledControl {control := "Security::controlNoCapabilityGranted", name := "No capability granted", text := "prism.toml grants the holo nothing and the model declares capabilitiesEmpty, so a guest import of any host capability is refused.", evidence := (cons (record Production.ThreatModel::Evidence {kind := (ctor Production.ThreatModel::EvidenceKind.gate), reference := "prism-code check refuses an ungranted guest import"}) (nil Production.ThreatModel::Evidence))})
+}
+
+definition{
+  name: modeledControlProofOfINV001,
+  parameters: [],
+  result: Production.ThreatModel::ModeledControl,
+  body: (record Production.ThreatModel::ModeledControl {control := "Security::controlProofOfINV001", name := "Proof of INV-001", text := "It never answers suspended when event is bad and strikes is at most 1. The Lean kernel proves it for every request.", evidence := (cons (record Production.ThreatModel::Evidence {kind := (ctor Production.ThreatModel::EvidenceKind.proof), reference := "DharmaLadderProofs::inv001Holds"}) (nil Production.ThreatModel::Evidence))})
+}
+
+definition{
+  name: modeledControlProofOfINV002,
+  parameters: [],
+  result: Production.ThreatModel::ModeledControl,
+  body: (record Production.ThreatModel::ModeledControl {control := "Security::controlProofOfINV002", name := "Proof of INV-002", text := "It never answers suspended when event is injection and strikes equals 0. The Lean kernel proves it for every request.", evidence := (cons (record Production.ThreatModel::Evidence {kind := (ctor Production.ThreatModel::EvidenceKind.proof), reference := "DharmaLadderProofs::inv002Holds"}) (nil Production.ThreatModel::Evidence))})
+}
+
+definition{
+  name: modeledControlProofOfINV003,
+  parameters: [],
+  result: Production.ThreatModel::ModeledControl,
+  body: (record Production.ThreatModel::ModeledControl {control := "Security::controlProofOfINV003", name := "Proof of INV-003", text := "It never answers trading when event is good and strikes is at least 3. The Lean kernel proves it for every request.", evidence := (cons (record Production.ThreatModel::Evidence {kind := (ctor Production.ThreatModel::EvidenceKind.proof), reference := "DharmaLadderProofs::inv003Holds"}) (nil Production.ThreatModel::Evidence))})
+}
+
+definition{
+  name: modeledControlProofOfINV004,
+  parameters: [],
+  result: Production.ThreatModel::ModeledControl,
+  body: (record Production.ThreatModel::ModeledControl {control := "Security::controlProofOfINV004", name := "Proof of INV-004", text := "It never answers suspended when event is good and strikes is at most 2. The Lean kernel proves it for every request.", evidence := (cons (record Production.ThreatModel::Evidence {kind := (ctor Production.ThreatModel::EvidenceKind.proof), reference := "DharmaLadderProofs::inv004Holds"}) (nil Production.ThreatModel::Evidence))})
+}
+
+definition{
+  name: modeledControlProofOfINV005,
+  parameters: [],
+  result: Production.ThreatModel::ModeledControl,
+  body: (record Production.ThreatModel::ModeledControl {control := "Security::controlProofOfINV005", name := "Proof of INV-005", text := "It never answers suspended when event is pardonbad and strikes is at most 3. The Lean kernel proves it for every request.", evidence := (cons (record Production.ThreatModel::Evidence {kind := (ctor Production.ThreatModel::EvidenceKind.proof), reference := "DharmaLadderProofs::inv005Holds"}) (nil Production.ThreatModel::Evidence))})
+}
+
+definition{
+  name: modeledControlRegeneratedFromThePrompt,
+  parameters: [],
+  result: Production.ThreatModel::ModeledControl,
+  body: (record Production.ThreatModel::ModeledControl {control := "Security::controlRegeneratedFromThePrompt", name := "Regenerated from the prompt", text := "The model is written from the prompt by the builder, and the build checks every theorem and replays every vector in the pinned SDK.", evidence := (cons (record Production.ThreatModel::Evidence {kind := (ctor Production.ThreatModel::EvidenceKind.gate), reference := "prismpm verify in the SDK image prismpm.lock pins"}) (cons (record Production.ThreatModel::Evidence {kind := (ctor Production.ThreatModel::EvidenceKind.review), reference := "app/prompt.json"}) (nil Production.ThreatModel::Evidence)))})
+}
+
+definition{
+  name: modeledControlStrictDecoder,
+  parameters: [],
+  result: Production.ThreatModel::ModeledControl,
+  body: (record Production.ThreatModel::ModeledControl {control := "Security::controlStrictDecoder", name := "Strict decoder", text := "Every field is decoded exactly: choices from their list, numbers as plain decimal digits within their bounds, single spaces between fields; anything else is invalid.", evidence := (cons (record Production.ThreatModel::Evidence {kind := (ctor Production.ThreatModel::EvidenceKind.gate), reference := "malformed-request acceptance vectors, replayed in the compiled guest by prismpm verify"}) (nil Production.ThreatModel::Evidence))})
+}
+
+definition{
+  name: mappingAlteredBuild,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatAlteredBuild", controls := (cons "Security::controlRegeneratedFromThePrompt" (nil String))})
+}
+
+definition{
+  name: mappingAlteredPage,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatAlteredPage", controls := (cons "Security::controlFingerprintAndProvenance" (nil String))})
+}
+
+definition{
+  name: mappingAnswerThatBreaksINV001,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatAnswerThatBreaksINV001", controls := (cons "Security::controlProofOfINV001" (nil String))})
+}
+
+definition{
+  name: mappingAnswerThatBreaksINV002,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatAnswerThatBreaksINV002", controls := (cons "Security::controlProofOfINV002" (nil String))})
+}
+
+definition{
+  name: mappingAnswerThatBreaksINV003,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatAnswerThatBreaksINV003", controls := (cons "Security::controlProofOfINV003" (nil String))})
+}
+
+definition{
+  name: mappingAnswerThatBreaksINV004,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatAnswerThatBreaksINV004", controls := (cons "Security::controlProofOfINV004" (nil String))})
+}
+
+definition{
+  name: mappingAnswerThatBreaksINV005,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatAnswerThatBreaksINV005", controls := (cons "Security::controlProofOfINV005" (nil String))})
+}
+
+definition{
+  name: mappingDeniedBuild,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatDeniedBuild", controls := (cons "Security::controlFingerprintAndProvenance" (nil String))})
+}
+
+definition{
+  name: mappingDeniedPage,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatDeniedPage", controls := (cons "Security::controlFingerprintAndProvenance" (nil String))})
+}
+
+definition{
+  name: mappingGrantedCapability,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatGrantedCapability", controls := (cons "Security::controlNoCapabilityGranted" (nil String))})
+}
+
+definition{
+  name: mappingHoloAlteredFromDharmaNandaLadderPageToGitHubPages,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatHoloAlteredFromDharmaNandaLadderPageToGitHubPages", controls := (cons "Security::controlFingerprintAndProvenance" (nil String))})
+}
+
+definition{
+  name: mappingHoloAlteredFromGitHubPagesToBrowser,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatHoloAlteredFromGitHubPagesToBrowser", controls := (cons "Security::controlFingerprintAndProvenance" (nil String))})
+}
+
+definition{
+  name: mappingHoloAlteredFromPrismBuildToDharmaNandaLadderPage,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatHoloAlteredFromPrismBuildToDharmaNandaLadderPage", controls := (cons "Security::controlFingerprintAndProvenance" (nil String))})
+}
+
+definition{
+  name: mappingImpersonatedBuild,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatImpersonatedBuild", controls := (cons "Security::controlFingerprintAndProvenance" (nil String))})
+}
+
+definition{
+  name: mappingMalformedRequest,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatMalformedRequest", controls := (cons "Security::controlStrictDecoder" (nil String))})
+}
+
+definition{
+  name: mappingOversizedRequest,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatOversizedRequest", controls := (cons "Security::controlBoundedRequest" (nil String))})
+}
+
+definition{
+  name: mappingSubstitutedHolo,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatSubstitutedHolo", controls := (cons "Security::controlFingerprintAndProvenance" (nil String))})
+}
+
+definition{
+  name: mappingTamperedModel,
+  parameters: [],
+  result: Production.ThreatModel::ThreatMapping,
+  body: (record Production.ThreatModel::ThreatMapping {threat := "Security::threatTamperedModel", controls := (cons "Security::controlRegeneratedFromThePrompt" (nil String))})
+}
+
+definition{
+  name: acceptedHoloReadFromDharmaNandaLadderPageToGitHubPages,
+  parameters: [],
+  result: Production.ThreatModel::AcceptedRisk,
+  body: (record Production.ThreatModel::AcceptedRisk {threat := "Security::threatHoloReadFromDharmaNandaLadderPageToGitHubPages", rationale := "The holo, its page and its acceptance vectors are published openly and carry no secret."})
+}
+
+definition{
+  name: acceptedHoloReadFromGitHubPagesToBrowser,
+  parameters: [],
+  result: Production.ThreatModel::AcceptedRisk,
+  body: (record Production.ThreatModel::AcceptedRisk {threat := "Security::threatHoloReadFromGitHubPagesToBrowser", rationale := "The holo, its page and its acceptance vectors are published openly and carry no secret."})
+}
+
+definition{
+  name: acceptedHoloReadFromPrismBuildToDharmaNandaLadderPage,
+  parameters: [],
+  result: Production.ThreatModel::AcceptedRisk,
+  body: (record Production.ThreatModel::AcceptedRisk {threat := "Security::threatHoloReadFromPrismBuildToDharmaNandaLadderPage", rationale := "The holo, its page and its acceptance vectors are published openly and carry no secret."})
+}
+
+definition{
+  name: acceptedPageRead,
+  parameters: [],
+  result: Production.ThreatModel::AcceptedRisk,
+  body: (record Production.ThreatModel::AcceptedRisk {threat := "Security::threatPageRead", rationale := "The holo, its page and its acceptance vectors are published openly and carry no secret."})
+}
+
+definition{
+  name: acceptedSubstitutedHost,
+  parameters: [],
+  result: Production.ThreatModel::AcceptedRisk,
+  body: (record Production.ThreatModel::AcceptedRisk {threat := "Security::threatSubstitutedHost", rationale := "A page cannot defend against its own host. The holo carries signed build provenance a visitor can check, and the app can be rebuilt from its prompt."})
+}
+
+structure{
+  name: StrideElement,
+  type_parameters: [],
+  parameters: [],
+  fields: [{name: index, type: Nat}, {name: kind, type: Nat}, {name: name, type: String}]
+}
+
+structure{
+  name: StridePair,
+  type_parameters: [],
+  parameters: [],
+  fields: [{name: element, type: Nat}, {name: category, type: Nat}, {name: name, type: String}]
+}
+
+definition{
+  name: strideElements,
+  parameters: [],
+  result: (List StrideElement),
+  body: (cons (record StrideElement {index := 0, kind := 0, name := "Browser"}) (cons (record StrideElement {index := 1, kind := 1, name := "Dharma Nanda ladder guest"}) (cons (record StrideElement {index := 2, kind := 2, name := "Dharma Nanda ladder page"}) (cons (record StrideElement {index := 3, kind := 0, name := "GitHub Pages"}) (cons (record StrideElement {index := 4, kind := 1, name := "Prism build"}) (cons (record StrideElement {index := 5, kind := 0, name := "Source repository"}) (cons (record StrideElement {index := 6, kind := 3, name := "Browser to Dharma Nanda ladder guest"}) (cons (record StrideElement {index := 7, kind := 3, name := "Dharma Nanda ladder guest to Browser"}) (cons (record StrideElement {index := 8, kind := 3, name := "Dharma Nanda ladder page to GitHub Pages"}) (cons (record StrideElement {index := 9, kind := 3, name := "GitHub Pages to Browser"}) (cons (record StrideElement {index := 10, kind := 3, name := "Prism build to Dharma Nanda ladder guest"}) (cons (record StrideElement {index := 11, kind := 3, name := "Prism build to Dharma Nanda ladder page"}) (cons (record StrideElement {index := 12, kind := 3, name := "Source repository to Prism build"}) (nil StrideElement))))))))))))))
+}
+
+definition{
+  name: threatPairs,
+  parameters: [],
+  result: (List StridePair),
+  body: (cons (record StridePair {element := 1, category := 0, name := "Security::threatSubstitutedHolo"}) (cons (record StridePair {element := 1, category := 1, name := "Security::threatMalformedRequest"}) (cons (record StridePair {element := 1, category := 2, name := "Security::threatAnswerThatBreaksINV001"}) (cons (record StridePair {element := 1, category := 2, name := "Security::threatAnswerThatBreaksINV002"}) (cons (record StridePair {element := 1, category := 2, name := "Security::threatAnswerThatBreaksINV003"}) (cons (record StridePair {element := 1, category := 2, name := "Security::threatAnswerThatBreaksINV004"}) (cons (record StridePair {element := 1, category := 2, name := "Security::threatAnswerThatBreaksINV005"}) (cons (record StridePair {element := 1, category := 3, name := "Security::threatGrantedCapability"}) (cons (record StridePair {element := 1, category := 4, name := "Security::threatOversizedRequest"}) (cons (record StridePair {element := 2, category := 1, name := "Security::threatAlteredPage"}) (cons (record StridePair {element := 2, category := 2, name := "Security::threatDeniedPage"}) (cons (record StridePair {element := 2, category := 3, name := "Security::threatPageRead"}) (cons (record StridePair {element := 3, category := 0, name := "Security::threatSubstitutedHost"}) (cons (record StridePair {element := 4, category := 0, name := "Security::threatImpersonatedBuild"}) (cons (record StridePair {element := 4, category := 1, name := "Security::threatAlteredBuild"}) (cons (record StridePair {element := 4, category := 2, name := "Security::threatDeniedBuild"}) (cons (record StridePair {element := 5, category := 1, name := "Security::threatTamperedModel"}) (cons (record StridePair {element := 8, category := 1, name := "Security::threatHoloAlteredFromDharmaNandaLadderPageToGitHubPages"}) (cons (record StridePair {element := 8, category := 3, name := "Security::threatHoloReadFromDharmaNandaLadderPageToGitHubPages"}) (cons (record StridePair {element := 9, category := 1, name := "Security::threatHoloAlteredFromGitHubPagesToBrowser"}) (cons (record StridePair {element := 9, category := 3, name := "Security::threatHoloReadFromGitHubPagesToBrowser"}) (cons (record StridePair {element := 11, category := 1, name := "Security::threatHoloAlteredFromPrismBuildToDharmaNandaLadderPage"}) (cons (record StridePair {element := 11, category := 3, name := "Security::threatHoloReadFromPrismBuildToDharmaNandaLadderPage"}) (nil StridePair))))))))))))))))))))))))
+}
+
+definition{
+  name: openPairs,
+  parameters: [],
+  result: (List StridePair),
+  body: (cons (record StridePair {element := 0, category := 0, name := "Spoofing of Browser"}) (cons (record StridePair {element := 0, category := 2, name := "Repudiation of Browser"}) (cons (record StridePair {element := 1, category := 5, name := "Elevation of privilege of Dharma Nanda ladder guest"}) (cons (record StridePair {element := 2, category := 4, name := "Denial of service of Dharma Nanda ladder page"}) (cons (record StridePair {element := 3, category := 2, name := "Repudiation of GitHub Pages"}) (cons (record StridePair {element := 4, category := 3, name := "Information disclosure of Prism build"}) (cons (record StridePair {element := 4, category := 4, name := "Denial of service of Prism build"}) (cons (record StridePair {element := 4, category := 5, name := "Elevation of privilege of Prism build"}) (cons (record StridePair {element := 5, category := 0, name := "Spoofing of Source repository"}) (cons (record StridePair {element := 5, category := 2, name := "Repudiation of Source repository"}) (cons (record StridePair {element := 6, category := 1, name := "Tampering of Browser to Dharma Nanda ladder guest"}) (cons (record StridePair {element := 6, category := 3, name := "Information disclosure of Browser to Dharma Nanda ladder guest"}) (cons (record StridePair {element := 6, category := 4, name := "Denial of service of Browser to Dharma Nanda ladder guest"}) (cons (record StridePair {element := 7, category := 1, name := "Tampering of Dharma Nanda ladder guest to Browser"}) (cons (record StridePair {element := 7, category := 3, name := "Information disclosure of Dharma Nanda ladder guest to Browser"}) (cons (record StridePair {element := 7, category := 4, name := "Denial of service of Dharma Nanda ladder guest to Browser"}) (cons (record StridePair {element := 8, category := 4, name := "Denial of service of Dharma Nanda ladder page to GitHub Pages"}) (cons (record StridePair {element := 9, category := 4, name := "Denial of service of GitHub Pages to Browser"}) (cons (record StridePair {element := 10, category := 1, name := "Tampering of Prism build to Dharma Nanda ladder guest"}) (cons (record StridePair {element := 10, category := 3, name := "Information disclosure of Prism build to Dharma Nanda ladder guest"}) (cons (record StridePair {element := 10, category := 4, name := "Denial of service of Prism build to Dharma Nanda ladder guest"}) (cons (record StridePair {element := 11, category := 4, name := "Denial of service of Prism build to Dharma Nanda ladder page"}) (cons (record StridePair {element := 12, category := 1, name := "Tampering of Source repository to Prism build"}) (cons (record StridePair {element := 12, category := 3, name := "Information disclosure of Source repository to Prism build"}) (cons (record StridePair {element := 12, category := 4, name := "Denial of service of Source repository to Prism build"}) (nil StridePair))))))))))))))))))))))))))
+}
+
+definition{
+  name: strideCategories,
+  parameters: [],
+  result: (List Nat),
+  body: (cons 0 (cons 1 (cons 2 (cons 3 (cons 4 (cons 5 (nil Nat)))))))
+}
+
+definition{
+  name: strideApplies,
+  parameters: [kind : Nat, category : Nat],
+  result: Bool,
+  body: (if (kind =? 0) then ((category =? 0) || (category =? 2)) else (if (kind =? 1) then (category <? 6) else (if (kind =? 2) then ((0 <? category) && (category <? 5)) else ((category =? 1) || ((category =? 3) || (category =? 4))))))
+}
+
+definition{
+  name: runListed,
+  parameters: [element : Nat, category : Nat, pairs : (List StridePair)],
+  result: Bool,
+  body: (match pairs
+    | List.nil => false
+    | List.cons pair rest => (if ((project pair element) =? element) then (((project pair category) =? category) || (runListed element category rest)) else false)),
+  recursive_argument: pairs
+}
+
+definition{
+  name: afterRun,
+  parameters: [element : Nat, pairs : (List StridePair)],
+  result: (List StridePair),
+  body: (match pairs
+    | List.nil => (nil StridePair)
+    | List.cons pair rest => (if ((project pair element) =? element) then (afterRun element rest) else (cons pair rest))),
+  recursive_argument: pairs
+}
+
+definition{
+  name: pairsEmpty,
+  parameters: [pairs : (List StridePair)],
+  result: Bool,
+  body: (match pairs | List.nil => true | List.cons pair rest => false)
+}
+
+definition{
+  name: exactlyOne,
+  parameters: [left : Bool, right : Bool],
+  result: Bool,
+  body: (if left then (if right then false else true) else right)
+}
+
+definition{
+  name: categoriesStated,
+  parameters: [
+    element : Nat,
+    kind : Nat,
+    answered : (List StridePair),
+    stated : (List StridePair),
+    categories : (List Nat)
+  ],
+  result: Bool,
+  body: (match categories
+    | List.nil => true
+    | List.cons category rest => ((if (strideApplies kind category) then (exactlyOne (runListed element category answered) (runListed element category stated)) else (if (runListed element category stated) then false else true)) && (categoriesStated element kind answered stated rest))),
+  recursive_argument: categories
+}
+
+definition{
+  name: elementsStated,
+  parameters: [
+    position : Nat,
+    records : (List StrideElement),
+    answered : (List StridePair),
+    stated : (List StridePair)
+  ],
+  result: Bool,
+  body: (match records
+    | List.nil => ((pairsEmpty answered) && (pairsEmpty stated))
+    | List.cons item rest => (((project item index) =? position) && ((categoriesStated position (project item kind) answered stated (strideCategories)) && (elementsStated (position + 1) rest (afterRun position answered) (afterRun position stated))))),
+  recursive_argument: records
+}
+
+definition{
+  name: pairsKnown,
+  parameters: [count : Nat, pairs : (List StridePair)],
+  result: Bool,
+  body: (match pairs
+    | List.nil => true
+    | List.cons pair rest => (((project pair element) <? count) && (((project pair category) <? 6) && (pairsKnown count rest)))),
+  recursive_argument: pairs
+}
+
+definition{
+  name: pairCount,
+  parameters: [values : (List StridePair)],
+  result: Nat,
+  body: (match values | List.nil => 0 | List.cons value rest => ((pairCount rest) + 1)),
+  recursive_argument: values
+}
+
+definition{
+  name: securityValid,
+  parameters: [],
+  result: Bool,
+  body: ((elementsStated 0 (strideElements) (threatPairs) (openPairs)) && ((pairsKnown 13 (threatPairs)) && (pairsKnown 13 (openPairs))))
+}
+
+theorem{
+  name: strideEnumerated,
+  parameters: [],
+  statement: ((securityValid) = true),
+  proof: decide{}
+}
+
+theorem{
+  name: strideOpenCount,
+  parameters: [],
+  statement: ((pairCount (openPairs)) = 25),
+  proof: decide{}
+}
+\end{semanticmodule}
+\end{lexlean}

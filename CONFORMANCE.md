@@ -18,11 +18,19 @@ The three honesty levels (R2):
 `cargo xtask audit-limits` fails if any code path returns an error the
 model does not sanction.
 
-## contract
+## dharma_ladder
 
 | ID | Level | Statement |
 | --- | --- | --- |
-| `TC-01` | `build` | The checker answers conformant exactly when every universal policy file's observed digest equals its locked digest |
+| `DL-01` | `build` | The app never answers suspended when event is bad and strikes is at most 1 |
+| `DL-02` | `build` | The app never answers suspended when event is injection and strikes equals 0 |
+| `DL-03` | `build` | The app never answers trading when event is good and strikes is at least 3 |
+| `DL-04` | `build` | The app never answers suspended when event is good and strikes is at most 2 |
+| `DL-05` | `build` | The app never answers suspended when event is pardonbad and strikes is at most 3 |
+| `DL-06` | `build` | The architecture description declares every stakeholder, concern, component, edge, viewpoint and view it references |
+| `DL-07` | `build` | The ISO/IEC 25010:2023 quality model declares all 9 characteristics and 40 subcharacteristics, states each subcharacteristic by a requirement or lists it open, and every parent it names is declared |
+| `DL-08` | `build` | Every STRIDE category each component and data flow is open to is answered by a threat or stated open, and no other pair is stated open |
+| `DL-09` | `build` | Every compliance obligation is numbered in order and names its evidence |
 
 ## frame
 

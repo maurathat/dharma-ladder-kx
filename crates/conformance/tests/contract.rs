@@ -1,105 +1,116 @@
-//! The `contract` suite: one test per scenario in `features/suites/contract.feature`.
+//! The `dharma_ladder` suite: one test per scenario in `features/suites/dharma_ladder.feature`.
 //!
-//! The proofs are checked by the Lean kernel when `just vv` runs
-//! `prismpm verify` on `app/`. What this test holds fixed is the claim those
-//! proofs are about: the theorem's exact statement and axioms, the six
-//! universal policy files they quantify over, and that the verdict the
-//! application returns is decided by the function they prove. A weakened
-//! statement, a dropped file, an extra axiom, or a verdict decided some other
-//! way would still verify, and would no longer be the claim `TC-01` makes.
+//! First written by the Prism-DevRel builder from the app's prompt, as
+//! `dharma_ladder.rs`. It lives at the template's existing path and is written
+//! compactly because this template's `audit-prism` gate lets non-Prism code only
+//! shrink. The theorems are checked by the Lean kernel when `just vv` runs
+//! `prismpm verify` on `app/`. What these tests hold fixed is what each theorem
+//! is about, so a weakened statement that still verifies fails the gate.
 
-use std::path::PathBuf;
+/// The condition no request may meet, for `DL-01` to `DL-05` in order.
+const CONDITIONS: [&str; 5] = [
+    "body: ((((((project request strikes) <=? 1000) && ((project request event) <? 5)) && ((project request event) =? (DharmaLadder::eventBad))) && ((project request strikes) <=? 1)) && ((DharmaLadder::judge request) =? (DharmaLadder::answerSuspended)))",
+    "body: ((((((project request strikes) <=? 1000) && ((project request event) <? 5)) && ((project request event) =? (DharmaLadder::eventInjection))) && ((project request strikes) =? 0)) && ((DharmaLadder::judge request) =? (DharmaLadder::answerSuspended)))",
+    "body: ((((((project request strikes) <=? 1000) && ((project request event) <? 5)) && ((project request event) =? (DharmaLadder::eventGood))) && (3 <=? (project request strikes))) && ((DharmaLadder::judge request) =? (DharmaLadder::answerTrading)))",
+    "body: ((((((project request strikes) <=? 1000) && ((project request event) <? 5)) && ((project request event) =? (DharmaLadder::eventGood))) && ((project request strikes) <=? 2)) && ((DharmaLadder::judge request) =? (DharmaLadder::answerSuspended)))",
+    "body: ((((((project request strikes) <=? 1000) && ((project request event) <? 5)) && ((project request event) =? (DharmaLadder::eventPardonbad))) && ((project request strikes) <=? 3)) && ((DharmaLadder::judge request) =? (DharmaLadder::answerSuspended)))",
+];
 
-fn root() -> PathBuf {
-    PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-        .ancestors()
-        .nth(2)
-        .expect("crates/conformance is two below the root")
-        .to_path_buf()
-}
+/// Module, theorem and statement of the facet theorems, `DL-06` to `DL-09` in order.
+const FACETS: [(&str, &str, &str); 4] = [
+    (
+        "Architecture",
+        "architectureDescriptionHolds",
+        "((architectureValid) = true)",
+    ),
+    ("Quality", "qualityModelHolds", "((qualityValid) = true)"),
+    ("Security", "strideEnumerated", "((securityValid) = true)"),
+    (
+        "Compliance",
+        "everyObligationEvidenced",
+        "((obligationsEvidenced 0 (obligations)) = true)",
+    ),
+];
 
-/// The body of the top-level declaration named `name`, up to its closing brace.
-fn declaration<'a>(model: &'a str, name: &str) -> &'a str {
+/// The body of the declaration named `name` in `app/src/<module>.lex.tex`, up to its closing brace.
+fn declaration(module: &str, name: &str) -> String {
+    let src = concat!(env!("CARGO_MANIFEST_DIR"), "/../../app/src/");
+    let model = std::fs::read_to_string(format!("{src}{module}.lex.tex")).expect("the module");
     let start = model
         .find(&format!("\n  name: {name},\n"))
-        .unwrap_or_else(|| panic!("{name} is not declared"));
-    let end = model[start..]
-        .find("\n}\n")
-        .unwrap_or_else(|| panic!("{name} is not closed"));
-    &model[start..start + end]
+        .expect("it is declared");
+    let end = model[start..].find("\n}\n").expect("it is closed");
+    model[start..start + end].to_string()
 }
 
-/// `TC-01`: The checker answers conformant exactly when every universal policy file's observed digest equals its locked digest
+/// Property `n`: its condition is the registered one, and its theorem says no request meets it.
+fn pinned(n: usize) {
+    let breaks = format!("breaksInv{n:03}");
+    let found = declaration("DharmaLadderProofs", &breaks);
+    assert!(found.contains(CONDITIONS[n - 1]), "{breaks} changed");
+    let holds = declaration("DharmaLadderProofs", &format!("inv{n:03}Holds"));
+    let statement = format!("statement: (({breaks} request) = false),");
+    assert!(holds.contains(&statement), "{holds}");
+}
+
+/// Facet theorem `n`: proved by `decide`, about exactly its predicate.
+fn holds(n: usize) {
+    let (module, theorem, statement) = FACETS[n];
+    let found = declaration(module, theorem);
+    let stated = found.contains(&format!("statement: {statement},"));
+    assert!(stated && found.contains("proof: decide{}"), "{found}");
+}
+
+/// `DL-01`: The app never answers suspended when event is bad and strikes is at most 1
 #[test]
-fn contract_tc_01() {
-    let model = std::fs::read_to_string(root().join("app/src/Contract.lex.tex"))
-        .expect("the contract model");
+fn dharma_ladder_dl_01() {
+    pinned(1);
+}
 
-    let decides = declaration(&model, "conformant_decides");
-    assert!(
-        decides.contains(
-            "statement: (((conformant observation) = true) <-> (Conformant observation)),"
-        ),
-        "TC-01's statement changed: conformant must be true exactly when Conformant holds:\n{decides}"
-    );
-    assert!(
-        decides.contains("parameters: [observation : Observation],")
-            && decides.contains("axioms: [propext]"),
-        "TC-01 quantifies over every observation and rests on propext only:\n{decides}"
-    );
+/// `DL-02`: The app never answers suspended when event is injection and strikes equals 0
+#[test]
+fn dharma_ladder_dl_02() {
+    pinned(2);
+}
 
-    // The proposition names every universal policy file whose digest
-    // `template.lock` binds: all of them but the self-referential lock.
-    let contract =
-        std::fs::read_to_string(root().join("template-contract.json")).expect("contract");
-    let list = contract
-        .split("\"universal_policy_paths\":[")
-        .nth(1)
-        .and_then(|rest| rest.split(']').next())
-        .expect("universal_policy_paths");
-    let bound: Vec<&str> = list
-        .split(',')
-        .map(|p| p.trim_matches('"'))
-        .filter(|p| *p != "template.lock")
-        .collect();
-    let proposition = declaration(&model, "Conformant");
-    let fields = [
-        "devcontainer",
-        "bootstrap",
-        "agents",
-        "verification",
-        "prismpmLock",
-        "templateContract",
-    ];
-    assert_eq!(bound.len(), fields.len(), "the contract binds {bound:?}");
-    let drifted = declaration(&model, "drifted");
-    for (field, path) in fields.iter().zip(&bound) {
-        assert!(
-            proposition.contains(&format!(
-                "(SameDigest (project (project observation {field}) expected) (project (project observation {field}) observed))"
-            )),
-            "Conformant must require {path} ({field}) to match"
-        );
-        assert!(
-            drifted.contains(&format!("(driftEntry (project observation {field})"))
-                && drifted.contains(&format!("\" {path}\"")),
-            "a drifted {path} must be named in the verdict"
-        );
-    }
+/// `DL-03`: The app never answers trading when event is good and strikes is at least 3
+#[test]
+fn dharma_ladder_dl_03() {
+    pinned(3);
+}
 
-    // A digest is four 64-bit words, the widest a Nat is compiled to, and
-    // two digests are the same only when every word is.
-    let same = declaration(&model, "SameDigest");
-    for word in ["w0", "w1", "w2", "w3"] {
-        assert!(
-            same.contains(&format!("((project left {word}) = (project right {word}))")),
-            "SameDigest must compare digest word {word}"
-        );
-    }
+/// `DL-04`: The app never answers suspended when event is good and strikes is at most 2
+#[test]
+fn dharma_ladder_dl_04() {
+    pinned(4);
+}
 
-    let dispatch = declaration(&model, "dispatch");
-    assert!(
-        dispatch.contains("(if (conformant (observe value)) then"),
-        "the verdict must be decided by conformant, the function TC-01 proves"
-    );
+/// `DL-05`: The app never answers suspended when event is pardonbad and strikes is at most 3
+#[test]
+fn dharma_ladder_dl_05() {
+    pinned(5);
+}
+
+/// `DL-06`: The architecture description declares every stakeholder, concern, component, edge, viewpoint and view it references
+#[test]
+fn dharma_ladder_dl_06() {
+    holds(0);
+}
+
+/// `DL-07`: The ISO/IEC 25010:2023 quality model declares all 9 characteristics and 40 subcharacteristics, states each subcharacteristic by a requirement or lists it open, and every parent it names is declared
+#[test]
+fn dharma_ladder_dl_07() {
+    holds(1);
+}
+
+/// `DL-08`: Every STRIDE category each component and data flow is open to is answered by a threat or stated open, and no other pair is stated open
+#[test]
+fn dharma_ladder_dl_08() {
+    holds(2);
+}
+
+/// `DL-09`: Every compliance obligation is numbered in order and names its evidence
+#[test]
+fn dharma_ladder_dl_09() {
+    holds(3);
 }
