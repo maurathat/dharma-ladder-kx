@@ -1,44 +1,88 @@
 {
-  "name": "Template contract",
-  "shortName": "Contract",
-  "live": "https://uor-foundation.github.io/template/",
-  "purpose": "Checks each universal policy file of a UOR template repository against its locked digest. Send the six expected and observed digests; it answers conformant, or names every file that drifted, and invalid request for anything else.",
-  "inputLabel": "Expected and observed digests",
-  "placeholder": "hex: followed by 384 bytes",
-  "submitLabel": "Check",
-  "outputLabel": "Verdict",
+  "name": "Dharma Nanda ladder",
+  "shortName": "Dharma",
+  "live": "https://maurathat.github.io/dharma-ladder-kx/",
+  "purpose": "Decide whether a seller or relay is trading or suspended after one event, from its strikes before the event, under the town's starting rule that 3 strikes suspend. Send strikes or event, separated by spaces; it answers trading or suspended, and invalid request for anything else.",
+  "inputLabel": "Request: strikes event",
+  "placeholder": "0 good",
+  "submitLabel": "Decide",
+  "outputLabel": "Answer",
   "answers": {
     "positive": [
-      "conformant"
+      "trading"
     ],
     "negative": [
-      "drift:*"
+      "suspended"
     ],
     "refusal": "invalid request"
   },
   "promise": {
-    "headline": "Says conformant exactly when every policy file matches its lock.",
-    "detail": "Each of the six universal policy files is compared with the digest the lock records, and any file that drifted is named."
+    "headline": "Says suspended exactly when three or more strikes remain after the event.",
+    "detail": "A bad delivery adds one strike, an injection adds two, good work removes none, and a council pardon takes back what the pardoned delivery added."
   },
-  "claim": "TC-01: the checker answers conformant exactly when every universal policy file's observed digest equals its locked digest.",
+  "claim": "DL-01: the app never answers suspended when event is bad and strikes is at most 1. DL-02: the app never answers suspended when event is injection and strikes equals 0. DL-03: the app never answers trading when event is good and strikes is at least 3. DL-04: the app never answers suspended when event is good and strikes is at most 2. DL-05: the app never answers suspended when event is pardonbad and strikes is at most 3.",
   "proposition": {
-    "name": "Conformant",
-    "text": "Conformant observation :=\n  SameDigest devcontainer.expected devcontainer.observed\n  /\\ SameDigest bootstrap.expected bootstrap.observed\n  /\\ SameDigest agents.expected agents.observed\n  /\\ SameDigest verification.expected verification.observed\n  /\\ SameDigest prismpmLock.expected prismpmLock.observed\n  /\\ SameDigest templateContract.expected templateContract.observed\n\nSameDigest left right :=\n  left.w0 = right.w0 /\\ left.w1 = right.w1 /\\ left.w2 = right.w2 /\\ left.w3 = right.w3",
-    "plain": "Every one of the six universal policy files has the digest the lock says it has."
+    "name": "judge",
+    "text": "judge request :=\n  event is bad and strikes is at least 2 → suspended\n  event is injection and strikes is at least 1 → suspended\n  event is good and strikes is at least 3 → suspended\n  event is pardonbad and strikes is at least 4 → suspended\n  event is pardoninjection and strikes is at least 5 → suspended\n  otherwise → trading",
+    "plain": "Decide whether a seller or relay is trading or suspended after one event, from its strikes before the event, under the town's starting rule that 3 strikes suspend."
   },
   "theorems": [
     {
-      "name": "conformant_decides",
-      "statement": "conformant observation = true ↔ Conformant observation, for every observation",
-      "how": "Proved by simplification over the record fields, checked by the Lean kernel by prismpm verify in CI",
-      "where": "app/src/Contract.lex.tex"
+      "name": "inv001Holds",
+      "statement": "no request meets breaksInv001: the app never answers suspended when event is bad and strikes is at most 1",
+      "how": "Proved by linear arithmetic, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/DharmaLadderProofs.lex.tex"
+    },
+    {
+      "name": "inv002Holds",
+      "statement": "no request meets breaksInv002: the app never answers suspended when event is injection and strikes equals 0",
+      "how": "Proved by linear arithmetic, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/DharmaLadderProofs.lex.tex"
+    },
+    {
+      "name": "inv003Holds",
+      "statement": "no request meets breaksInv003: the app never answers trading when event is good and strikes is at least 3",
+      "how": "Proved by linear arithmetic, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/DharmaLadderProofs.lex.tex"
+    },
+    {
+      "name": "inv004Holds",
+      "statement": "no request meets breaksInv004: the app never answers suspended when event is good and strikes is at most 2",
+      "how": "Proved by linear arithmetic, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/DharmaLadderProofs.lex.tex"
+    },
+    {
+      "name": "inv005Holds",
+      "statement": "no request meets breaksInv005: the app never answers suspended when event is pardonbad and strikes is at most 3",
+      "how": "Proved by linear arithmetic, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/DharmaLadderProofs.lex.tex"
     }
   ],
   "pinned": [
     {
-      "name": "contract_tc_01",
-      "what": "The theorem's statement and axioms, the six files the proposition names against template-contract.json, that a drifted file is named in the verdict, and that the verdict is decided by conformant. A string-matching test, not a theorem: a planted defect fails it.",
-      "where": "crates/conformance/tests/contract.rs"
+      "name": "dharma_ladder_dl_01",
+      "what": "DL-01's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/dharma_ladder.rs"
+    },
+    {
+      "name": "dharma_ladder_dl_02",
+      "what": "DL-02's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/dharma_ladder.rs"
+    },
+    {
+      "name": "dharma_ladder_dl_03",
+      "what": "DL-03's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/dharma_ladder.rs"
+    },
+    {
+      "name": "dharma_ladder_dl_04",
+      "what": "DL-04's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/dharma_ladder.rs"
+    },
+    {
+      "name": "dharma_ladder_dl_05",
+      "what": "DL-05's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/dharma_ladder.rs"
     }
   ],
   "trusted": [
@@ -65,14 +109,14 @@
   ],
   "attestations": {
     "proof": {
-      "id": "not recorded for the template's own app; an instance records the UOR MCP server's attestation here",
-      "url": "https://github.com/UOR-Foundation/template/actions/workflows/bootstrap.yml"
+      "id": "not recorded: the proof ran in the SDK image, not on the UOR MCP server",
+      "url": "https://github.com/maurathat/dharma-ladder-kx/actions/workflows/bootstrap.yml"
     },
     "build": {
-      "id": "printed by prismpm verify in every pages run; an instance records it here",
-      "url": "https://github.com/UOR-Foundation/template/actions/workflows/pages.yml"
+      "id": "printed by prismpm verify in every pages run",
+      "url": "https://github.com/maurathat/dharma-ladder-kx/actions/workflows/pages.yml"
     }
   },
-  "repository": "https://github.com/UOR-Foundation/template",
-  "report": "https://github.com/UOR-Foundation/template/blob/main/TEMPLATE-VERIFICATION.md"
+  "repository": "https://github.com/maurathat/dharma-ladder-kx",
+  "report": "https://github.com/maurathat/dharma-ladder-kx/blob/main/TEMPLATE-VERIFICATION.md"
 }

@@ -18,25 +18,23 @@ The three honesty levels (R2):
 `cargo xtask audit-limits` fails if any code path returns an error the
 model does not sanction.
 
-## contract
+## dharma_ladder
 
 | ID | Level | Statement |
 | --- | --- | --- |
-| `TC-01` | `build` | The checker answers conformant exactly when every universal policy file's observed digest equals its locked digest |
-
-## frame
-
-| ID | Level | Statement |
-| --- | --- | --- |
-| `FR-01` | `build` | With a working worker, the page loads and verifies the archive only in that worker before using its identities or guest |
-| `FR-02` | `build` | A returning browser whose worker kept an earlier deploy serves this deploy from the navigation that brings its page |
-| `FR-03` | `build` | A first visit's bytes are counted once the page has started, the frame's and the app's each within its own budget |
-| `FR-04` | `build` | An app's workspace key opens only on a device of the Prism ID that made it, follows the ID when it joins or is recovered, and stays locked on a removed device |
-| `FR-05` | `build` | An app's pages on every device of one Prism ID meet on a relay topic only those devices derive, per app, with every message sealed to the ID, and a removed device is left behind |
+| `DL-01` | `build` | The app never answers suspended when event is bad and strikes is at most 1 |
+| `DL-02` | `build` | The app never answers suspended when event is injection and strikes equals 0 |
+| `DL-03` | `build` | The app never answers trading when event is good and strikes is at least 3 |
+| `DL-04` | `build` | The app never answers suspended when event is good and strikes is at most 2 |
+| `DL-05` | `build` | The app never answers suspended when event is pardonbad and strikes is at most 3 |
+| `DL-06` | `build` | The architecture description declares every stakeholder, concern, component, edge, viewpoint and view it references |
+| `DL-07` | `build` | The ISO/IEC 25010:2023 quality model declares all 9 characteristics and 40 subcharacteristics, states each subcharacteristic by a requirement or lists it open, and every parent it names is declared |
+| `DL-08` | `build` | Every STRIDE category each component and data flow is open to is answered by a threat or stated open, and no other pair is stated open |
+| `DL-09` | `build` | Every compliance obligation is numbered in order and names its evidence |
 
 ## Cited authorities
 
-An authority is cited, never re-derived, and never gated on: what it states is not claimed as established here, so the claim that reproduces it stays `some-true`, and that is all "gated on" excludes. Its artifact (a standard's text, a corpus) may be committed when its row names the path in `artifact` and records in `checksum` a SHA-256 over the committed bytes, which `cargo xtask check-model` recomputes; a conformance test may then use a committed corpus as its oracle, as evidence for a `build` claim. With nothing committed, `checksum` is `none` and `checksum_reason` says why.
+Never re-derived, vendored, or gated on.
 
 | Authority | Citation | Evidence here |
 | --- | --- | --- |
