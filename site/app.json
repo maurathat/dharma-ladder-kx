@@ -17,8 +17,8 @@
     "refusal": "invalid request"
   },
   "promise": {
-    "headline": "A first or second honest mistake never suspends a seller, and good work never lifts a suspension.",
-    "detail": "These and three more properties are proved in Lean for every valid request. The full three-strike rule is the table shown below: 3 or more strikes after the event suspend. That table is checked by 42 examples and by a test against the town's own ladder, not by a proof."
+    "headline": "Proven in LexLean: a first or second honest mistake never suspends a seller, and good work never lifts a suspension.",
+    "detail": "These and three more properties are written in LexLean and checked by the Lean kernel for every valid request. The full three-strike rule is the table shown below: 3 or more strikes after the event suspend. That table is checked by 42 examples and by a test against the town's own ladder, not by a proof."
   },
   "claim": "DL-01: the app never answers suspended when event is bad and strikes is at most 1. DL-02: the app never answers suspended when event is injection and strikes equals 0. DL-03: the app never answers trading when event is good and strikes is at least 3. DL-04: the app never answers suspended when event is good and strikes is at most 2. DL-05: the app never answers suspended when event is pardonbad and strikes is at most 3.",
   "proposition": {
